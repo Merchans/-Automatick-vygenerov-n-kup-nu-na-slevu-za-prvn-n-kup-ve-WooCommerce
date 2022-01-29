@@ -119,7 +119,7 @@ class Discount_Custom_WC_Email {
 new Discount_Custom_WC_Email();
 
 add_filter( 'woocommerce_defer_transactional_emails', '__return_false' );
-add_action( 'save_post', 'send_first_order_coupon_email' );
+add_action( 'woocommerce_checkout_order_processed', 'send_first_order_coupon_email' );
 function send_first_order_coupon_email( $order_id ) {
 	
 	$coupon_code = get_post_meta( $order_id, 'generated_coupon', true );
