@@ -18,15 +18,16 @@ class WC_First_Order_Coupon_Email extends WC_Email
 
         $this->id          = 'wc_first_order_coupon_email';
         $this->customer_email = true;
-        $this->title       = __('First order coupon', $this->language_slug);
-        $this->description = __('First order coupon', $this->language_slug);
-        $this->heading     = __('First order coupon', $this->language_slug);
-        $this->subject     = __('First order coupon from {site_title}', $this->language_slug);
+        $this->title       = __('Kupón na první objednávku', $this->language_slug);
+        $this->description = __('Kupón na první objednávku', $this->language_slug);
+        $this->heading     = __('Kupón na první objednávku', $this->language_slug);
+        $this->subject     = __('Kupón na první objednávku z {site_title}', $this->language_slug);
 
         $this->template_html  = 'first-order-coupon-email.php';
         $this->template_plain = 'first-order-coupon-email-plain.php';
         $this->template_base  =  CUSTOM_WC_EMAIL_PATH . 'email/';
 
+       
 
         parent::__construct();
     }
@@ -61,33 +62,36 @@ class WC_First_Order_Coupon_Email extends WC_Email
     }
 
     /**
-     * get_content_html function.
+     * Get content html.
      *
+     * @access public
+     * @return string
      */
     public function get_content_html()
     {
         return wc_get_template_html($this->template_html, array(
-            'order'              => $this->object,
-            'email_heading'      => $this->get_heading(),
-            'sent_to_admin'      => false,
-            'plain_text'         => false,
-            'email'              => $this,
-        ));
+            'order'         => $this->object,
+            'email_heading' => $this->get_heading(),
+            'sent_to_admin' => false,
+            'plain_text'    => false,
+            'email'            => $this
+        ), '', $this->template_base);
     }
 
     /**
-     * get_content_plain function.
+     * Get content plain.
      *
+     * @return string
      */
     public function get_content_plain()
     {
         return wc_get_template_html($this->template_plain, array(
-            'order'              => $this->object,
-            'email_heading'      => $this->get_heading(),
-            'sent_to_admin'      => false,
-            'plain_text'         => true,
-            'email'              => $this,
-        ));
+            'order'         => $this->object,
+            'email_heading' => $this->get_heading(),
+            'sent_to_admin' => false,
+            'plain_text'    => true,
+            'email'            => $this
+        ), '', $this->template_base);
     }
 
     /**

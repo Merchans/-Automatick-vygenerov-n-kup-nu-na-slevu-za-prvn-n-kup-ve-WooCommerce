@@ -1,5 +1,4 @@
 <?php
-
 $coupon_code = get_post_meta( $order->get_id(), 'generated_coupon', true );
 ?>
 
@@ -7,6 +6,6 @@ $coupon_code = get_post_meta( $order->get_id(), 'generated_coupon', true );
 
 <h2><?php _e( 'Děkujeme za první nákup!', 'musilda' ); ?></h2>
 <h3><?php _e( 'Obdrželi jste slevový kupón na další nákup', 'musilda' ); ?></h3>
-<p><?php _e( 'Pro získání slevy, při dalším nákupu zadete v pokladně nálsedující kód:', 'musilda' ); ?> <?php echo $coupon_code; ?></p>
+<p><?php _e( 'Pro získání slevy, při dalším nákupu zadete v pokladně nálsedující kód:', 'musilda' ); ?> <?php echo '<strong>' . $coupon_code . '</strong>'; ?></p>
 
-<?php do_action( 'woocommerce_email_footer' ); 
+<?php do_action( 'woocommerce_email_footer' );
